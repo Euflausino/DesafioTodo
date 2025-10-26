@@ -69,13 +69,13 @@ $ http GET :8080/todo
 
 - Atualizar Tarefa
 ```
-$ http PUT :8080/todo/atualizar/1 nome="Todo 1 Up" descricao="Desc Todo 1 Up" prioridade=2
+$ http PUT :8080/todo/atualizar/1 name="Todo 1 Up" descricao="Desc Todo 1 Up" prioridade=2
 
 [
   {
     "id": 1,
-    "nome": "Todo 1 up",
-    "descricao": "Desc Todo 1 up",
+    "nome": "Todo 1 Up",
+    "descricao": "Desc Todo 1 Up",
     "realizado": true,
     "prioridade": 2
   }
