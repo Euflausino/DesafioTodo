@@ -6,7 +6,6 @@ import com.euflausino.desafiotodo.dto.TodoResponseDTO;
 import com.euflausino.desafiotodo.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

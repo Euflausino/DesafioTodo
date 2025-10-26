@@ -7,10 +7,12 @@ import com.euflausino.desafiotodo.entity.Todo;
 import com.euflausino.desafiotodo.exception.NumeroNaoEncontradoException;
 import com.euflausino.desafiotodo.mapper.TodoMapper;
 import com.euflausino.desafiotodo.repository.TodoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Service
 public class TodoService {
 
     private final TodoRepository todoRepository;
