@@ -10,7 +10,7 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     // public List<Todo> findByRealizadoOrderByPrioridadeAscIdAsc(boolean status); futura emplementacao
 
     @Query("SELECT t FROM Todo t " +
-            "ORDER BY CASE WHEN t.realizado = true THEN 0 ELSE 1 END, t.prioridade ASC, t.id ASC")
+            "ORDER BY CASE WHEN t.realizado = true THEN 1 ELSE 0 END, t.prioridade ASC, t.id ASC")
     List<Todo> listarTodosComTrueNaFrente();
 
 }
