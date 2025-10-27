@@ -4,6 +4,7 @@ import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoResponseDTO;
 import com.euflausino.desafiotodo.service.TodoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,8 @@ public class TodoController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<TodoResponseDTO>  atualizarTodo( @PathVariable Long id, @RequestBody AtualizaTodoRequestDTO todoRequestDTO) {
+    @Transactional
+    public ResponseEntity<TodoResponseDTO>  atualizarTodo( @PathVariable Long id, @RequestBody @Valid AtualizaTodoRequestDTO todoRequestDTO) {
         return ResponseEntity.ok(todoService.editarTodo(id,todoRequestDTO));
     }
 

@@ -56,7 +56,6 @@ public class TodoService {
         if(todoRequestDTO.descricao() != null) todo.setDescricao(todoRequestDTO.descricao());
         if(todoRequestDTO.prioridade() != null) todo.setPrioridade(todoRequestDTO.prioridade());
         if (todoRequestDTO.realizado()) todo.setRealizado(true);
-        todoRepository.save(todo);
         return TodoMapper.todoResponseDTO(todo);
     }
 
