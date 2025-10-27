@@ -4,7 +4,7 @@ import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoResponseDTO;
 import com.euflausino.desafiotodo.entity.Todo;
-import com.euflausino.desafiotodo.exception.UsuarioNaoEncontradoException;
+import com.euflausino.desafiotodo.exception.TodoNaoEncontradaException;
 import com.euflausino.desafiotodo.mapper.TodoMapper;
 import com.euflausino.desafiotodo.repository.TodoRepository;
 import jakarta.transaction.Transactional;
@@ -36,7 +36,7 @@ public class TodoService {
     @Transactional
     public List<TodoResponseDTO> excluir(Long id) {
         if (!todoRepository.existsById(id)) {
-            throw new UsuarioNaoEncontradoException("Usuário não encontrado.");
+            throw new TodoNaoEncontradaException("Usuário não encontrado.");
         }
         todoRepository.deleteById(id);
         return listarTodos();
@@ -45,7 +45,7 @@ public class TodoService {
     @Transactional
     public TodoResponseDTO editarTodo(Long id, AtualizaTodoRequestDTO todoRequestDTO) {
         Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado."));
+                .orElseThrow(() -> new TodoNaoEncontradaException("Todo não encontrada."));
 
         if(todoRequestDTO.nome() != null) todo.setNome(todoRequestDTO.nome());
         if(todoRequestDTO.descricao() != null) todo.setDescricao(todoRequestDTO.descricao());
@@ -53,6 +53,11 @@ public class TodoService {
         if (todoRequestDTO.realizado()) todo.setRealizado(true);
 
         return TodoMapper.todoResponseDTO(todo);
+    }
+
+    public TodoResponseDTO getTodo(Long id) {
+        todoRepository.findById(id).orElseThrow(() -> new TodoNaoEncontradaException("Todo não encontrada."));
+        return TodoMapper.todoResponseDTO(todoRepository.findById(id).get());
     }
 
 }

@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
 
-    @ExceptionHandler(UsuarioNaoEncontradoException.class)
+    @ExceptionHandler(TodoNaoEncontradaException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse UsuarioNotFound(Exception ex) {
         return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
