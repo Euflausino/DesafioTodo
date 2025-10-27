@@ -23,10 +23,10 @@ public class TodoService {
 
     //criar, vizualizar, editar e excluir
     @Transactional
-    public List<TodoResponseDTO> criarTodo(TodoRequestDTO todoRequestDTO) {
+    public TodoResponseDTO criarTodo(TodoRequestDTO todoRequestDTO) {
         Todo todo = TodoMapper.toEntity(todoRequestDTO);
         todoRepository.save(todo);
-        return listarTodos();
+        return TodoMapper.todoResponseDTO(todo);
     }
 
     public List<TodoResponseDTO> listarTodos() {

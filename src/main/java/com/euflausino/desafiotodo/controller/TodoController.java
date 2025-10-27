@@ -4,10 +4,10 @@ import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoRequestDTO;
 import com.euflausino.desafiotodo.dto.TodoResponseDTO;
 import com.euflausino.desafiotodo.service.TodoService;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -22,8 +22,10 @@ public class TodoController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<List<TodoResponseDTO>> criarTodo(@RequestBody @Valid TodoRequestDTO todoRequestDTO) {
-        return ResponseEntity.ok(todoService.criarTodo(todoRequestDTO));
+    public ResponseEntity<TodoResponseDTO> criarTodo(@RequestBody @Valid TodoRequestDTO todoRequestDTO, UriComponentsBuilder uriBuilder) {
+       TodoResponseDTO todoResponseDTO = todoService.criarTodo(todoRequestDTO);
+        var uri = uriBuilder.path("/todo/{id}").buildAndExpand(todoResponseDTO.id()).toUri();
+        return ResponseEntity.created(uri).body(todoResponseDTO);
     }
 
     @GetMapping
