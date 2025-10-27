@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 
 public record TodoRequestDTO(
         @NotBlank
-        String name,
+        String nome,
 
         String descricao,
 

@@ -6,7 +6,7 @@ public record TodoResponseDTO(
 
         String nome,
 
-        String desc,
+        String descricao,
 
         boolean realizado,
 

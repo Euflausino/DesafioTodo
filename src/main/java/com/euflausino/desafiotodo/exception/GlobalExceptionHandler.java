@@ -14,16 +14,16 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 
-    @ExceptionHandler(NumeroNaoEncontradoException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse numeroNaoEncontrado(IllegalArgumentException ex) {
-        return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
-    }
-
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleGenericException(Exception ex) {
-        return "Erro inesperado: " + ex.getMessage();
+    public ErrorResponse handleGenericException(Exception ex) {
+        return new ErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
+
+    @ExceptionHandler(UsuarioNaoEncontradoException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse UsuarioNotFound(Exception ex) {
+        return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
     }
 }
 
