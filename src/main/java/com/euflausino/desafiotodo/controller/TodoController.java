@@ -7,8 +7,9 @@ import com.euflausino.desafiotodo.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,13 @@ public class TodoController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<TodoResponseDTO> criarTodo(@RequestBody @Valid TodoRequestDTO todoRequestDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<TodoResponseDTO> criarTodo(@RequestBody @Valid TodoRequestDTO todoRequestDTO) {
        TodoResponseDTO todoResponseDTO = todoService.criarTodo(todoRequestDTO);
-        var uri = uriBuilder.path("/todo/{id}").buildAndExpand(todoResponseDTO.id()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentContextPath()
+                .path("/todo/{id}")
+                .buildAndExpand(todoResponseDTO.id())
+                .toUri();
         return ResponseEntity.created(uri).body(todoResponseDTO);
     }
 
