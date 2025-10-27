@@ -37,7 +37,6 @@ public class TodoController {
     }
 
     @PutMapping("/atualizar/{id}")
-    @Transactional
     public ResponseEntity<TodoResponseDTO>  atualizarTodo( @PathVariable Long id, @RequestBody @Valid AtualizaTodoRequestDTO todoRequestDTO) {
         return ResponseEntity.ok(todoService.editarTodo(id,todoRequestDTO));
     }

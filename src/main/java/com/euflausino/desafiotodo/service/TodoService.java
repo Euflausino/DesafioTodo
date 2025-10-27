@@ -7,6 +7,7 @@ import com.euflausino.desafiotodo.entity.Todo;
 import com.euflausino.desafiotodo.exception.NumeroNaoEncontradoException;
 import com.euflausino.desafiotodo.mapper.TodoMapper;
 import com.euflausino.desafiotodo.repository.TodoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class TodoService {
     }
 
     //criar, vizualizar, editar e excluir
-
+    @Transactional
     public List<TodoResponseDTO> criarTodo(TodoRequestDTO todoRequestDTO) {
         Todo todo = TodoMapper.toEntity(todoRequestDTO);
         todoRepository.save(todo);
@@ -33,6 +34,7 @@ public class TodoService {
         return  TodoMapper.todoResponseListDTO(todoRepository.listarTodosComTrueNaFrente());
     }
 
+    @Transactional
     public List<TodoResponseDTO> excluir(Long id) {
         if(id == null || id <= 0 ) {
              throw new IllegalArgumentException("Numero inválido ou não cadastrado.");
@@ -44,6 +46,7 @@ public class TodoService {
         return listarTodos();
     }
 
+    @Transactional
     public TodoResponseDTO editarTodo(Long id, AtualizaTodoRequestDTO todoRequestDTO) {
         if(id == null || id <= 0) {
             throw new IllegalArgumentException("Numero inválido.");
@@ -56,6 +59,7 @@ public class TodoService {
         if(todoRequestDTO.descricao() != null) todo.setDescricao(todoRequestDTO.descricao());
         if(todoRequestDTO.prioridade() != null) todo.setPrioridade(todoRequestDTO.prioridade());
         if (todoRequestDTO.realizado()) todo.setRealizado(true);
+        todoRepository.save(todo);
         return TodoMapper.todoResponseDTO(todo);
     }
 
