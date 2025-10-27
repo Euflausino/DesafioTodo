@@ -52,7 +52,11 @@ public class TodoService {
             throw new NumeroNaoEncontradoException("Numero não encontrado.");
         }
         Todo todo = todoRepository.getReferenceById(id);
-        todo.atualizarInformacoes(todoRequestDTO);
+        if(todoRequestDTO.nome() != null) todo.setNome(todoRequestDTO.nome());
+        if(todoRequestDTO.descricao() != null) todo.setDescricao(todoRequestDTO.descricao());
+        if(todoRequestDTO.prioridade() != null) todo.setPrioridade(todoRequestDTO.prioridade());
+        if (!todoRequestDTO.realizado()) todo.setRealizado(todoRequestDTO.realizado());
+        todoRepository.save(todo);
         return TodoMapper.todoResponseDTO(todo);
     }
 

@@ -1,6 +1,5 @@
 package com.euflausino.desafiotodo.entity;
 
-import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -67,21 +66,6 @@ public class Todo {
 
     public void setPrioridade(Integer prioridade) {
         this.prioridade = prioridade;
-    }
-
-    public void atualizarInformacoes(AtualizaTodoRequestDTO atualizaTodoRequestDTO) {
-        if(atualizaTodoRequestDTO.nome() != null) {
-            this.setNome(atualizaTodoRequestDTO.nome());
-        }
-        if(atualizaTodoRequestDTO.descricao() != null) {
-            this.setDescricao(atualizaTodoRequestDTO.descricao());
-        }
-        if(atualizaTodoRequestDTO.realizado()) {
-            this.setRealizado(atualizaTodoRequestDTO.realizado());
-        }
-        if(atualizaTodoRequestDTO.prioridade() != null) {
-            this.setPrioridade(atualizaTodoRequestDTO.prioridade());
-        }
     }
 
 }
