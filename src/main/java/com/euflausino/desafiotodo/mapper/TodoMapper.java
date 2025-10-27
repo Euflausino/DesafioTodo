@@ -10,7 +10,7 @@ public class TodoMapper {
 
     public static Todo toEntity(TodoRequestDTO todoRequestDTO) {
         return new Todo(
-                todoRequestDTO.name(),
+                todoRequestDTO.nome(),
                 todoRequestDTO.descricao(),
                 todoRequestDTO.prioridade()
         );
