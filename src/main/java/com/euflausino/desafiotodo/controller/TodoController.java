@@ -1,9 +1,9 @@
 package com.euflausino.desafiotodo.controller;
 
-import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
-import com.euflausino.desafiotodo.dto.TodoRequestDTO;
-import com.euflausino.desafiotodo.dto.TodoResponseDTO;
-import com.euflausino.desafiotodo.service.TodoService;
+import com.euflausino.desafiotodo.dto.todo.AtualizaTodoRequestDTO;
+import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
+import com.euflausino.desafiotodo.dto.todo.TodoResponseDTO;
+import com.euflausino.desafiotodo.service.todo.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

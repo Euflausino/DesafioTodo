@@ -1,8 +1,7 @@
-package com.euflausino.desafiotodo.dto;
+package com.euflausino.desafiotodo.dto.todo;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.lang.NonNull;
 
 public record TodoRequestDTO(
         @NotBlank(message = "{nome.obrigatorio}")

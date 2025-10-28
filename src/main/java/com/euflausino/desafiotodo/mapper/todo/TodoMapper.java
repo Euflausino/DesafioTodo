@@ -1,8 +1,8 @@
-package com.euflausino.desafiotodo.mapper;
+package com.euflausino.desafiotodo.mapper.todo;
 
-import com.euflausino.desafiotodo.dto.TodoRequestDTO;
-import com.euflausino.desafiotodo.dto.TodoResponseDTO;
-import com.euflausino.desafiotodo.entity.Todo;
+import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
+import com.euflausino.desafiotodo.dto.todo.TodoResponseDTO;
+import com.euflausino.desafiotodo.entity.todo.Todo;
 
 import java.util.List;
 

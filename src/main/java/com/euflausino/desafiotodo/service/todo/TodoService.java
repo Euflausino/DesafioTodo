@@ -1,12 +1,12 @@
-package com.euflausino.desafiotodo.service;
+package com.euflausino.desafiotodo.service.todo;
 
-import com.euflausino.desafiotodo.dto.AtualizaTodoRequestDTO;
-import com.euflausino.desafiotodo.dto.TodoRequestDTO;
-import com.euflausino.desafiotodo.dto.TodoResponseDTO;
-import com.euflausino.desafiotodo.entity.Todo;
+import com.euflausino.desafiotodo.dto.todo.AtualizaTodoRequestDTO;
+import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
+import com.euflausino.desafiotodo.dto.todo.TodoResponseDTO;
+import com.euflausino.desafiotodo.entity.todo.Todo;
 import com.euflausino.desafiotodo.exception.TodoNaoEncontradaException;
-import com.euflausino.desafiotodo.mapper.TodoMapper;
-import com.euflausino.desafiotodo.repository.TodoRepository;
+import com.euflausino.desafiotodo.mapper.todo.TodoMapper;
+import com.euflausino.desafiotodo.repository.todo.TodoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -35,18 +35,14 @@ public class TodoService {
 
     @Transactional
     public List<TodoResponseDTO> excluir(Long id) {
-        if (!todoRepository.existsById(id)) {
-            throw new TodoNaoEncontradaException("Usuário não encontrado.");
-        }
+        validarTodo(id);
         todoRepository.deleteById(id);
         return listarTodos();
     }
 
     @Transactional
     public TodoResponseDTO editarTodo(Long id, AtualizaTodoRequestDTO todoRequestDTO) {
-        Todo todo = todoRepository.findById(id)
-                .orElseThrow(() -> new TodoNaoEncontradaException("Todo não encontrada."));
-
+        Todo todo = validarTodo(id);
         if(todoRequestDTO.nome() != null) todo.setNome(todoRequestDTO.nome());
         if(todoRequestDTO.descricao() != null) todo.setDescricao(todoRequestDTO.descricao());
         if(todoRequestDTO.prioridade() != null) todo.setPrioridade(todoRequestDTO.prioridade());
@@ -56,8 +52,14 @@ public class TodoService {
     }
 
     public TodoResponseDTO getTodo(Long id) {
-        todoRepository.findById(id).orElseThrow(() -> new TodoNaoEncontradaException("Todo não encontrada."));
-        return TodoMapper.todoResponseDTO(todoRepository.findById(id).get());
+        Todo todo = validarTodo(id);
+        return TodoMapper.todoResponseDTO(todo);
+    }
+
+    private Todo validarTodo(Long id) {
+       return todoRepository.findById(id)
+                .orElseThrow(() -> new TodoNaoEncontradaException("Todo não encontrada."));
+
     }
 
 }

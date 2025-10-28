@@ -1,4 +1,4 @@
-package com.euflausino.desafiotodo.dto;
+package com.euflausino.desafiotodo.dto.todo;
 
 public record TodoResponseDTO(
 

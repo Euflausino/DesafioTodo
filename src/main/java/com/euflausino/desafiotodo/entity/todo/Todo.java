@@ -1,4 +1,4 @@
-package com.euflausino.desafiotodo.entity;
+package com.euflausino.desafiotodo.entity.todo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
