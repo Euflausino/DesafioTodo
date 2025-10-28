@@ -5,6 +5,7 @@ import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
 import com.euflausino.desafiotodo.dto.todo.TodoResponseDTO;
 import com.euflausino.desafiotodo.service.todo.TodoService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -34,12 +35,12 @@ public class TodoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TodoResponseDTO>> listarTodods() {
+    public ResponseEntity<Page<TodoResponseDTO>> listarTodods() {
         return ResponseEntity.ok(todoService.listarTodos());
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<List<TodoResponseDTO>> deletarTodo(@PathVariable Long id) {
+    public ResponseEntity<Page<TodoResponseDTO>> deletarTodo(@PathVariable Long id) {
         return ResponseEntity.ok(todoService.excluir(id));
     }
 

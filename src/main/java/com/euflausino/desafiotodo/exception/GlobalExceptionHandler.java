@@ -1,5 +1,6 @@
 package com.euflausino.desafiotodo.exception;
 
+import com.euflausino.desafiotodo.exception.todo.TodoNaoEncontradaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
