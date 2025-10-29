@@ -8,6 +8,7 @@ import com.euflausino.desafiotodo.exception.TodoNaoEncontradaException;
 import com.euflausino.desafiotodo.mapper.TodoMapper;
 import com.euflausino.desafiotodo.repository.TodoRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +30,12 @@ public class TodoService {
         return TodoMapper.todoResponseDTO(todo);
     }
 
-    public List<TodoResponseDTO> listarTodos() {
-        return  TodoMapper.todoResponseListDTO(todoRepository.listarTodosComTrueNaFrente());
+    public Page<TodoResponseDTO> listarTodos() {
+        return  TodoMapper.todoResponsePageDTO(todoRepository.listarTodosComTrueNaFrente());
     }
 
     @Transactional
-    public List<TodoResponseDTO> excluir(Long id) {
+    public Page<TodoResponseDTO> excluir(Long id) {
         if (!todoRepository.existsById(id)) {
             throw new TodoNaoEncontradaException("Usuário não encontrado.");
         }
