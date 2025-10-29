@@ -1,6 +1,6 @@
-package com.euflausino.desafiotodo.repository.todo;
+package com.euflausino.desafiotodo.repository;
 
-import com.euflausino.desafiotodo.entity.todo.Todo;
+import com.euflausino.desafiotodo.entity.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

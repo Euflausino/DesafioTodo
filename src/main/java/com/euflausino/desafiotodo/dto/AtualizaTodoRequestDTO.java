@@ -1,4 +1,4 @@
-package com.euflausino.desafiotodo.dto.todo;
+package com.euflausino.desafiotodo.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

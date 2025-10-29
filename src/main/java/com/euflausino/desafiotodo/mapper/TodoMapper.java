@@ -1,10 +1,8 @@
-package com.euflausino.desafiotodo.mapper.todo;
+package com.euflausino.desafiotodo.mapper;
 
-import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
-import com.euflausino.desafiotodo.dto.todo.TodoResponseDTO;
-import com.euflausino.desafiotodo.entity.todo.Todo;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import com.euflausino.desafiotodo.dto.TodoRequestDTO;
+import com.euflausino.desafiotodo.dto.TodoResponseDTO;
+import com.euflausino.desafiotodo.entity.Todo;
 
 import java.util.List;
 
@@ -28,8 +26,8 @@ public class TodoMapper {
         );
     }
 
-    public static Page<TodoResponseDTO> toPageResponse(List<Todo> list){
-        List<TodoResponseDTO> retorno = list.stream().map(TodoMapper::todoResponseDTO).toList();
-        return new PageImpl<>(retorno);
+    public static List<TodoResponseDTO> todoResponseListDTO(List<Todo> list) {
+        return list.stream().map(TodoMapper::todoResponseDTO).toList();
     }
+
 }
