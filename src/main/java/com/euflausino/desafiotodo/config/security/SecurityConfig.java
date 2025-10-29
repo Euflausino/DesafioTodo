@@ -1,4 +1,4 @@
-package com.euflausino.desafiotodo.config;
+package com.euflausino.desafiotodo.config.security;
 
 
 import org.springframework.context.annotation.Bean;

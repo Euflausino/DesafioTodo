@@ -1,4 +1,4 @@
-package com.euflausino.desafiotodo.controller;
+package com.euflausino.desafiotodo.controller.todo;
 
 import com.euflausino.desafiotodo.dto.todo.AtualizaTodoRequestDTO;
 import com.euflausino.desafiotodo.dto.todo.TodoRequestDTO;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/todo")
